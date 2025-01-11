@@ -1,4 +1,3 @@
-import os
 from fastapi import FastAPI, Form, Request
 from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -56,7 +55,6 @@ async def recommend(
 # Serve the HTML form
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    print("Current working directory:", os.getcwd())  # Debugging line to check the current directory
     return templates.TemplateResponse("index.html", {"request": request})
 
 handler = Mangum(app)  # Entry point for AWS Lambda or Vercel
